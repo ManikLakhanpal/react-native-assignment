@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import JobCard from "@/components/JobCard";
 
 export default function Save() {
-  const [savedJobs, setSavedJobs] = useState([]);
+  const [savedJobs, setSavedJobs] = useState<{ id: string; title: string; location: string; salary: string; phone: string; description?: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -15,7 +15,16 @@ export default function Save() {
       setIsLoading(true);
       const data = await AsyncStorage.getItem("bookmarkedJobs");
       if (data) {
-        setSavedJobs(JSON.parse(data));
+        setSavedJobs(
+          JSON.parse(data).map((job: any) => ({
+            id: job.id,
+            title: job.title,
+            location: job.location || "Unknown location",
+            salary: job.salary || "Not specified",
+            phone: job.phone || "Not available",
+            description: job.description,
+          }))
+        );
       } else {
         setSavedJobs([]);
       }
@@ -38,7 +47,7 @@ export default function Save() {
     loadBookmarks();
   }, []);
 
-  const removeBookmark = async (id) => {
+  const removeBookmark = async (id: string) => {
     try {
       const updatedJobs = savedJobs.filter((job) => job.id !== id);
       await AsyncStorage.setItem("bookmarkedJobs", JSON.stringify(updatedJobs));
@@ -50,7 +59,7 @@ export default function Save() {
     }
   };
 
-  const confirmRemove = (id, title) => {
+  const confirmRemove = (id: string, title: string) => {
     Alert.alert(
       "Remove Bookmark",
       `Are you sure you want to remove "${title}" from bookmarks?`,

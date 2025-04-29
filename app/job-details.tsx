@@ -19,7 +19,7 @@ export default function JobDetails() {
       const existing = await AsyncStorage.getItem("bookmarkedJobs");
       if (existing) {
         const parsed = JSON.parse(existing);
-        const alreadyExists = parsed.find((job) => job.id === id);
+        const alreadyExists = parsed.find((job: { id: string }) => job.id === id);
         setIsBookmarked(!!alreadyExists);
       }
     } catch (e) {
@@ -34,7 +34,7 @@ export default function JobDetails() {
       const parsed = existing ? JSON.parse(existing) : [];
 
       if (isBookmarked) {
-        const updatedJobs = parsed.filter((job) => job.id !== id);
+        const updatedJobs = parsed.filter((job: { id: string }) => job.id !== id);
         await AsyncStorage.setItem(
           "bookmarkedJobs",
           JSON.stringify(updatedJobs)
@@ -63,7 +63,9 @@ export default function JobDetails() {
       <Text className="text-[#A8B5DB] mb-2">Salary: {salary}</Text>
       <Text className="text-[#A8B5DB] mb-2">Phone: {phone}</Text>
       <Text className="text-[#A8B5DB] mt-4">
-        {description?.replace(/\r\n|\n|\r/g, "\n\n")}
+        {Array.isArray(description)
+          ? description.join("\n\n")
+          : description?.replace(/\r\n|\n|\r/g, "\n\n")}
       </Text>
 
       <Pressable

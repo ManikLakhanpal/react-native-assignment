@@ -44,6 +44,7 @@ const Index = () => {
         renderItem={({ item }) => (
           <JobCard
             job={{
+              id: item.id,
               title: item.title,
               location: item.primary_details?.Place || "N/A",
               salary: item.primary_details?.Salary || "N/A",

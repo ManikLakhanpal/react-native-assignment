@@ -40,7 +40,7 @@ const Index = () => {
 
       <FlatList
         data={jobs}
-        keyExtractor={(item) => item.id?.toString()}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <JobCard
             job={{

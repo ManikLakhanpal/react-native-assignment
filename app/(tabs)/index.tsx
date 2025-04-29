@@ -13,7 +13,7 @@ const Index = () => {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`REMOVED_URL`);
+      const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}`);
   
       const data = response.data.results;
       const newJobs = Array.isArray(data) ? data : data.jobs || [data];

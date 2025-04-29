@@ -66,9 +66,9 @@ export default function Save() {
   };
 
   return (
-    <View className="flex-1 bg-[#0F0D23] p-4">
-      <View className="flex-1 bg-[#0F0D23] px-4 pt-6">
-        <Text className="text-white text-2xl font-bold my-4">
+    <View className="flex-1 bg-[#0F0D23] px-4 py-14 pb-14">
+
+        <Text className="text-cyan-300 text-2xl font-bold my-4">
           Bookmarked Jobs
         </Text>
         {isLoading ? (
@@ -98,7 +98,6 @@ export default function Save() {
             )}
           />
         )}
-      </View>
     </View>
   );
 }

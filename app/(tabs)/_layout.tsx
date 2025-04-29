@@ -34,7 +34,7 @@ export default function TabsLayout() {
           alignItems: "center",
         },
         tabBarStyle: {
-          height: 60,
+          height: 70,
           position: "absolute",
           overflow: "hidden",
           borderWidth: 1,

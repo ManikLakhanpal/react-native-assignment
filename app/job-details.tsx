@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Alert } from "react-native";
+import { View, Text, Pressable, Alert, ScrollView } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { ArrowLeft, Bookmark, BookmarkCheck } from "lucide-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -53,15 +53,18 @@ export default function JobDetails() {
   };
 
   return (
-    <View className="flex-1 bg-[#0F0D23] p-6">
+    <View className="flex-1 bg-[#0F0D23] p-6 py-14">
+      <ScrollView showsVerticalScrollIndicator={false}>
       <Pressable onPress={() => router.back()} className="mb-4">
         <ArrowLeft color="#A8B5DB" size={24} />
       </Pressable>
       <Text className="text-2xl text-white font-bold mb-2">{title}</Text>
-      <Text className="text-[#A8B5DB] mb-1">Location: {location}</Text>
-      <Text className="text-[#A8B5DB] mb-1">Salary: {salary}</Text>
-      <Text className="text-[#A8B5DB] mb-1">Phone: {phone}</Text>
-      <Text className="text-[#A8B5DB] mt-4">{description}</Text>
+      <Text className="text-[#A8B5DB] mb-2">Location: {location}</Text>
+      <Text className="text-[#A8B5DB] mb-2">Salary: {salary}</Text>
+      <Text className="text-[#A8B5DB] mb-2">Phone: {phone}</Text>
+      <Text className="text-[#A8B5DB] mt-4">
+        {description?.replace(/\r\n|\n|\r/g, "\n\n")}
+      </Text>
 
       <Pressable
         onPress={toggleBookmark}
@@ -81,6 +84,7 @@ export default function JobDetails() {
           </>
         )}
       </Pressable>
+      </ScrollView>
     </View>
   );
 }

@@ -35,18 +35,19 @@ const JobCard: React.FC<JobCardProps> = ({
         {showDeleteButton && onDelete && (
           <TouchableOpacity
             onPress={(e) => {
-              e.stopPropagation(); // Prevent triggering the card's onPress
+              e.stopPropagation();
               onDelete();
             }}
             className="bg-red-500 h-8 w-8 rounded-full items-center justify-center ml-2"
           >
-            <Trash2 size={20} color="white" />
+            <Trash2 size={20} color="red" />
           </TouchableOpacity>
         )}
       </View>
-      <Text className="text-[#A8B5DB]">Location: {job.location}</Text>
-      <Text className="text-[#A8B5DB]">Salary: {job.salary}</Text>
-      <Text className="text-[#A8B5DB]">Phone: {job.phone}</Text>
+      <Text style={{ marginTop: 10 }} className="text-[#A8B5DB]">Location: {job.location}</Text>
+      <Text style={{ marginTop: 5 }} className="text-[#A8B5DB]">Salary: {job.salary}</Text>
+      <Text style={{ marginTop: 5 }} className="text-[#A8B5DB]">Phone: {job.phone}</Text>
+      <View style={{ height: 1, backgroundColor: '#969696', marginTop: 5 }} />
     </TouchableOpacity>
   );
 };

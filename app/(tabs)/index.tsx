@@ -35,8 +35,8 @@ const Index = () => {
   };
 
   return (
-    <View className="flex-1 bg-[#0F0D23] px-4 py-4 pb-14">
-      <Text className="text-white text-2xl font-bold my-4">Job Listings</Text>
+    <View className="flex-1 bg-[#0F0D23] px-4 py-14 pb-14">
+      <Text className="text-2xl font-bold my-4 text-cyan-300">Job Listings</Text>
 
       <FlatList
         data={jobs}
